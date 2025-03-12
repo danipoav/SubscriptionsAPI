@@ -4,7 +4,6 @@ import java.security.Key;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Base64.Decoder;
 import java.util.function.Function;
 
 import org.springframework.security.core.userdetails.UserDetails;
@@ -45,6 +44,19 @@ public class JwtService {
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24))
                 .signWith(getSignedKey(), SignatureAlgorithm.HS256)
                 .compact();
+    }
+
+    private boolean isTokenValid(String token, UserDetails userDetails) {
+        final String user = extractUsername(token);
+        return (user.equals(userDetails.getUsername()) && !isTokenExpired(token));
+    }
+
+    private boolean isTokenExpired(String token) {
+        return extractExpiration(token).before(new Date());
+    }
+
+    private Date extractExpiration(String token) {
+        return extractClaim(token, Claims::getExpiration);
     }
 
     private Claims extractAllClaims(String token) {
