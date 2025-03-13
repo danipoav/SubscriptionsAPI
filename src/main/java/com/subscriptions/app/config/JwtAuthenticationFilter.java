@@ -2,6 +2,7 @@ package com.subscriptions.app.config;
 
 import java.io.IOException;
 
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -33,6 +34,9 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         }
         jwt = authHeader.substring(7);
         userEmail = jwtService.extractUsername(jwt); // Extract the user email from the token
+        if (userEmail != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+
+        }
     }
 
 }
