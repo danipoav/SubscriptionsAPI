@@ -33,7 +33,7 @@ public class SecurityConfiguration {
                 // y la contraseña encriptada
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/public/**").permitAll() // Rutas públicas
+                        .requestMatchers("/api/auth/**").permitAll() // Rutas públicas
                         .anyRequest().authenticated());
 
         return http.build();
