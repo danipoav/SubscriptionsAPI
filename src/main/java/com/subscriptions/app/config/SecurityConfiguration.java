@@ -28,6 +28,9 @@ public class SecurityConfiguration {
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider)
+                // El authentication provider es un metodo ya implementado pero que en
+                // Application config lo configuramos para que nos devuleva el usurio de la bbdd
+                // y la contraseña encriptada
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/public/**").permitAll() // Rutas públicas
@@ -35,5 +38,10 @@ public class SecurityConfiguration {
 
         return http.build();
     }
-
+    // Lo que hago aqui es que basicamente spring tiene una funcion que intercepta
+    // las llamadas http y pues para llegar a tu controlador primero tiene que pasar
+    // una serie de filtros que en este caso le estoy diciendo que antes de llegar
+    // al controlador tiene que ver si el usurio esta autenticado y sino devuelve
+    // una llamada http 401 unautorized y si pasa y esta autenticado accedera a la
+    // peticion que etsba haciendo en el controlador
 }
