@@ -13,13 +13,15 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class AuthController {
 
-    private AuthenticationService authenticationService;
+    private final AuthenticationService authenticationService;
 
     @PostMapping("/register")
     public ResponseEntity<AuthenticationResponse> register(@RequestBody RegisterRequest request) {
+        System.out.println(request.getEmail());
         return ResponseEntity.ok(authenticationService.register(request));
     }
 
+    @PostMapping("/login")
     public ResponseEntity<AuthenticationResponse> login(@RequestBody LoginRequest request) {
         return ResponseEntity.ok(authenticationService.login(request));
     }
