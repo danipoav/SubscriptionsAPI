@@ -38,7 +38,7 @@ public class PlanController {
     }
 
     // Conseguir los planes de un servicio en especifico
-    @GetMapping("/service/{serviceId}")
+    @GetMapping("/{serviceId}")
     public ResponseEntity<List<Plan>> getPlansByService(@PathVariable Long serviceId) {
         return null;
     }
