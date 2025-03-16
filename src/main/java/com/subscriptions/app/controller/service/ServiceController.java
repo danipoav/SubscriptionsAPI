@@ -27,23 +27,23 @@ public class ServiceController {
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
     public ResponseEntity<Service> createService(@RequestBody ServiceRequest request) {
-        return null;
+        return ResponseEntity.ok(serviceService.createService(request));
     }
 
     @GetMapping
     public ResponseEntity<List<Service>> getAllServices() {
-        return null;
+        return ResponseEntity.ok(serviceService.getAllServices());
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Service> getServiceById(@PathVariable Long id) {
-        return null;
+        return ResponseEntity.ok(serviceService.getServiceById(id));
     }
 
     @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/{id}")
     public ResponseEntity<Service> updateService(@RequestBody ServiceRequest request, @PathVariable Long id) {
-        return null;
+        return ResponseEntity.ok(serviceService.updateService(id, request));
     }
 
     @PreAuthorize("hasRole('ADMIN')")
