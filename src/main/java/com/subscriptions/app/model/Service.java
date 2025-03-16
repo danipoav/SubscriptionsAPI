@@ -7,6 +7,7 @@ import lombok.*;
 @Table(name = "services")
 @Getter
 @Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 

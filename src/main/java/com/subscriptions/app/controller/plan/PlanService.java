@@ -51,7 +51,7 @@ public class PlanService {
 
     public void deletePlan(Long id) {
         if (!planRepository.existsById(id)) {
-            throw new RuntimeException("Plan no encontrado");
+            throw new RuntimeException("Plan not founded");
         }
         planRepository.deleteById(id);
     }
