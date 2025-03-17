@@ -2,7 +2,6 @@ package com.subscriptions.app.controller.subscriptions;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -27,8 +26,8 @@ public class SubscriptionsService {
         return subscribeRepository.findAll();
     }
 
-    public Optional<Subscribe> getSubscriptionById(Long id) {
-        return subscribeRepository.findById(id);
+    public Subscribe getSubscriptionById(Long id) {
+        return subscribeRepository.findById(id).orElseThrow(() -> new RuntimeException("Subscription Not founded"));
     }
 
     public Subscribe createSubscription(SubscriptionsRequest request) {
