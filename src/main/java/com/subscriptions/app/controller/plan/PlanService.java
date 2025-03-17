@@ -42,7 +42,7 @@ public class PlanService {
     }
 
     public Plan updatePlan(Long Id, CreatePlanRequest request) {
-        Plan plan = planRepository.findById(Id).orElseThrow(() -> new RuntimeException("Plan no encontrado"));
+        Plan plan = planRepository.findById(Id).orElseThrow(() -> new RuntimeException("Plan not Founded"));
         plan.setName(request.getName());
         plan.setPrice(request.getPrice());
         plan.setPeriod(request.getPeriod());
