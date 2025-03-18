@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.subscriptions.app.model.Payment;
-import com.subscriptions.app.repository.PaymentRepository;
 
 import lombok.AllArgsConstructor;
 
@@ -18,7 +17,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class PaymentsController {
 
-    private final PaymentRepository paymentRepository;
+    private final PaymentsService paymentsService;
 
     public ResponseEntity<List<Payment>> getAllPayments() {
         return ResponseEntity.ok(null);
