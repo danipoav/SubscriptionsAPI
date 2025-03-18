@@ -20,22 +20,23 @@ public class PaymentsController {
     private final PaymentsService paymentsService;
 
     public ResponseEntity<List<Payment>> getAllPayments() {
-        return ResponseEntity.ok(null);
+        return ResponseEntity.ok(paymentsService.getAllPayments());
     }
 
     public ResponseEntity<Payment> getPaymentById(@PathVariable Long id) {
-        return ResponseEntity.ok(null);
+        return ResponseEntity.ok(paymentsService.getPaymentById(id));
     }
 
     public ResponseEntity<Payment> createPayment(@RequestBody PaymentsRequest request) {
-        return ResponseEntity.ok(null);
+        return ResponseEntity.ok(paymentsService.createPayment(request));
     }
 
-    public ResponseEntity<Payment> updatePayment(@RequestBody PaymentsRequest request) {
-        return ResponseEntity.ok(null);
+    public ResponseEntity<Payment> updatePayment(@RequestBody PaymentsRequest request, @PathVariable Long id) {
+        return ResponseEntity.ok(paymentsService.updatePayment(request, id));
     }
 
     public ResponseEntity<String> deletePayment(@PathVariable Long id) {
+        paymentsService.deletePayment(id);
         return ResponseEntity.ok("Payment removed correctly");
     }
 
