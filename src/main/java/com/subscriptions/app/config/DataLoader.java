@@ -30,7 +30,7 @@ public class DataLoader {
             SubscribeRepository subscribeRepository,
             PaymentRepository paymentRepository) {
         return args -> {
-            if (userRepository.count() == 0) {
+            if (serviceRepository.count() == 0) {
 
                 BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
@@ -41,8 +41,12 @@ public class DataLoader {
                 userRepository.save(user);
 
                 // Insertar 2 servicios
-                Service netflix = new Service(null, "Netflix", "Streaming de películas y series", "netflix_logo.png");
-                Service spotify = new Service(null, "Spotify", "Música ilimitada", "spotify_logo.png");
+                Service netflix = new Service(null, "Netflix",
+                        "Netflix is a subscription-based streaming service that allows users to watch TV shows, movies, documentaries, and original content across a wide variety of genres and languages. Founded in 1997 as a DVD rental service, it transitioned into streaming in 2007 and quickly became a leader in the entertainment industry.",
+                        "https://upload.wikimedia.org/wikipedia/commons/0/0c/Netflix_2015_N_logo.svg");
+                Service spotify = new Service(null, "Spotify",
+                        "Spotify is a digital music, podcast, and video streaming service that gives users access to millions of songs and audio content from artists all over the world. Launched in 2008, it has become one of the most popular music platforms globally. Spotify offers both a free, ad-supported version and a premium subscription that removes ads, allows offline listening, and provides higher audio quality.",
+                        "https://storage.googleapis.com/pr-newsroom-wp/1/2023/05/Spotify_Primary_Logo_RGB_Green.png");
                 serviceRepository.save(netflix);
                 serviceRepository.save(spotify);
 
