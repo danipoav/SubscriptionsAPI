@@ -21,7 +21,7 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequestMapping("/api/plans")
 @RequiredArgsConstructor
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:5173")
 public class PlanController {
 
     private final PlanService planService;
@@ -40,7 +40,6 @@ public class PlanController {
     }
 
     // Conseguir los planes de un servicio en especifico
-    @CrossOrigin
     @GetMapping("/{planId}")
     public ResponseEntity<Plan> getPlansByService(@PathVariable Long planId) {
         return ResponseEntity.ok(planService.getPlanById(planId));
