@@ -40,9 +40,9 @@ public class PlanController {
     }
 
     // Conseguir los planes de un servicio en especifico
-    @GetMapping("/{serviceId}")
-    public ResponseEntity<List<Plan>> getPlansByService(@PathVariable Long serviceId) {
-        return null;
+    @GetMapping("/{planId}")
+    public ResponseEntity<Plan> getPlansByService(@PathVariable Long planId) {
+        return ResponseEntity.ok(planService.getPlanById(planId));
     }
 
     // Hacer un update a un plan en especifico

@@ -37,8 +37,8 @@ public class PlanService {
         return planRepository.findAll();
     }
 
-    public List<Plan> getPlanByService(Long serviceId) {
-        return planRepository.findByServiceId(serviceId);
+    public Plan getPlanById(Long planId) {
+        return planRepository.findById(planId).orElseThrow(() -> new RuntimeException("Plan not founded"));
     }
 
     public Plan updatePlan(Long Id, CreatePlanRequest request) {
