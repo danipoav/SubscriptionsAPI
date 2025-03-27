@@ -40,6 +40,7 @@ public class PlanController {
     }
 
     // Conseguir los planes de un servicio en especifico
+    @CrossOrigin
     @GetMapping("/{planId}")
     public ResponseEntity<Plan> getPlansByService(@PathVariable Long planId) {
         return ResponseEntity.ok(planService.getPlanById(planId));
