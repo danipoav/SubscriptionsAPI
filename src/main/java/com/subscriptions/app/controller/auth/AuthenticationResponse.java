@@ -1,5 +1,7 @@
 package com.subscriptions.app.controller.auth;
 
+import com.subscriptions.app.model.User;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,5 +14,6 @@ import lombok.NoArgsConstructor;
 public class AuthenticationResponse {
 
     private String token;
+    private User user;
 
 }

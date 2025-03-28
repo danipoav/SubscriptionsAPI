@@ -24,7 +24,6 @@ public class SubscriptionsController {
 
     private final SubscriptionsService subscriptionsService;
 
-    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
     public ResponseEntity<Subscribe> createSubscription(@RequestBody SubscriptionsRequest request) {
         return ResponseEntity.ok(subscriptionsService.createSubscription(request));
