@@ -35,8 +35,8 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/**").permitAll() // Rutas públicas
                         .requestMatchers("/api/services").permitAll() // Poniendo la ruta servicios publica, GET
-                        .requestMatchers("/api/plans").permitAll() // Poniendo ruta de planes en publico
-                                                                   // publico
+                        .requestMatchers("/api/plans/**").permitAll() // Poniendo ruta de planes en publico
+                                                                      // publico
                         .requestMatchers("/api/admin/**").hasRole("ADMIN") // Rutas solo accesibles por ADMIN
                         .requestMatchers("/api/user/**").hasAnyRole("ADMIN", "USER") // Rutas solo accesibles por ADMIN
                                                                                      // y user
