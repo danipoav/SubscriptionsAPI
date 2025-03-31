@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +21,7 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequestMapping("/api/subscribe")
 @RequiredArgsConstructor
+@CrossOrigin
 public class SubscriptionsController {
 
     private final SubscriptionsService subscriptionsService;
@@ -39,13 +41,13 @@ public class SubscriptionsController {
         return ResponseEntity.ok(subscriptionsService.getSubscriptionById(subscribeId));
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    // @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/{id}")
     public ResponseEntity<String> updateService(@PathVariable Long id, @RequestBody SubscriptionsRequest request) {
         return ResponseEntity.ok("Falta implementgar");
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    // @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deletePlan(@PathVariable Long id) {
         subscriptionsService.deleteSubscription(id);
