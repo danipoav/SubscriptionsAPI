@@ -52,11 +52,10 @@ public class PlanController {
         return ResponseEntity.ok(planService.updatePlan(id, request));
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    // @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deletePlan(@PathVariable Long id) {
-        planService.deletePlan(id);
-        return ResponseEntity.ok("Plan removed Correctly!");
+    public ResponseEntity<List<Plan>> deletePlan(@PathVariable Long id) {
+        return ResponseEntity.ok(planService.deletePlan(id));
     }
 
 }

@@ -49,11 +49,12 @@ public class PlanService {
         return plan;
     }
 
-    public void deletePlan(Long id) {
+    public List<Plan> deletePlan(Long id) {
         if (!planRepository.existsById(id)) {
             throw new RuntimeException("Plan not founded");
         }
         planRepository.deleteById(id);
+        return planRepository.findAll();
     }
 
 }
