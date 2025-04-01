@@ -52,12 +52,12 @@ public class SubscriptionsService {
         return null;
     }
 
-    public List<Subscribe> deleteSubscription(Long id) {
+    public String deleteSubscription(Long id) {
 
         if (!subscribeRepository.existsById(id)) {
             throw new RuntimeException("Subscription not founded");
         }
         subscribeRepository.deleteById(id);
-        return subscribeRepository.findAll();
+        return "Subscription deleted correctly";
     }
 }

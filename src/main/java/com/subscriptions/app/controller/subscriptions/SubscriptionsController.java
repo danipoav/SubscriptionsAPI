@@ -48,7 +48,7 @@ public class SubscriptionsController {
 
     // @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/{id}")
-    public ResponseEntity<List<Subscribe>> deletePlan(@PathVariable Long id) {
+    public ResponseEntity<String> deletePlan(@PathVariable Long id) {
         return ResponseEntity.ok(subscriptionsService.deleteSubscription(id));
     }
 

@@ -3,6 +3,7 @@ package com.subscriptions.app.controller.payments;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.subscriptions.app.model.Payment;
 import com.subscriptions.app.model.Subscribe;
@@ -50,12 +51,13 @@ public class PaymentsService {
         return payment;
     }
 
-    public List<Payment> deletePayment(Long id) {
-        if (!paymentRepository.existsById(id)) {
+    @Transactional
+    public String deletePayment(Long sub_id) {
+        if (!paymentRepository.existsBySubscribeId(sub_id)) {
             throw new RuntimeException("Payment not founded");
         }
-        paymentRepository.deleteById(id);
-        return paymentRepository.findAll();
+        paymentRepository.deleteBySubscribeId(sub_id);
+        return "Payment deleted correctly";
     }
 
 }

@@ -6,5 +6,7 @@ import com.subscriptions.app.model.Payment;
 
 @Repository
 public interface PaymentRepository extends JpaRepository<Payment, Long> {
+    void deleteBySubscribeId(Long subscribeId);
 
+    boolean existsBySubscribeId(Long subscribeId);
 }
