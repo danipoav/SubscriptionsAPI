@@ -26,8 +26,9 @@ public class SubscriptionsService {
         return subscribeRepository.findAll();
     }
 
-    public Subscribe getSubscriptionById(Long id) {
-        return subscribeRepository.findById(id).orElseThrow(() -> new RuntimeException("Subscription Not founded"));
+    public List<Subscribe> getSubscriptionById(Long userId) {
+        List<Subscribe> subscriptions = subscribeRepository.findByUserId(userId);
+        return subscriptions;
     }
 
     public Subscribe createSubscription(SubscriptionsRequest request) {

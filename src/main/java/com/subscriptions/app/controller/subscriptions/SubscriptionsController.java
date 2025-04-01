@@ -3,7 +3,6 @@ package com.subscriptions.app.controller.subscriptions;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,9 +35,9 @@ public class SubscriptionsController {
         return ResponseEntity.ok(subscriptionsService.getAllSubscriptions());
     }
 
-    @GetMapping("/{subscribeId}")
-    public ResponseEntity<Subscribe> getSubscribeByService(@PathVariable Long subscribeId) {
-        return ResponseEntity.ok(subscriptionsService.getSubscriptionById(subscribeId));
+    @GetMapping("/{userId}")
+    public ResponseEntity<List<Subscribe>> getSubscribeByService(@PathVariable Long userId) {
+        return ResponseEntity.ok(subscriptionsService.getSubscriptionById(userId));
     }
 
     // @PreAuthorize("hasRole('ADMIN')")
