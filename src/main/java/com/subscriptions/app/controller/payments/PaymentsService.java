@@ -50,11 +50,12 @@ public class PaymentsService {
         return payment;
     }
 
-    public void deletePayment(Long id) {
+    public List<Payment> deletePayment(Long id) {
         if (!paymentRepository.existsById(id)) {
             throw new RuntimeException("Payment not founded");
         }
         paymentRepository.deleteById(id);
+        return paymentRepository.findAll();
     }
 
 }
