@@ -41,7 +41,7 @@ public class PaymentsController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Payment> updatePayment(@RequestBody PaymentsRequest request, @PathVariable Long id) {
+    public ResponseEntity<Payment> updatePayment(@RequestBody PaymentUpdate request, @PathVariable Long id) {
         return ResponseEntity.ok(paymentsService.updatePayment(request, id));
     }
 

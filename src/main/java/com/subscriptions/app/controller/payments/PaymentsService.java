@@ -40,15 +40,14 @@ public class PaymentsService {
         return payment;
     }
 
-    public Payment updatePayment(PaymentsRequest request, Long id) {
+    public Payment updatePayment(PaymentUpdate request, Long id) {
         Subscribe subscribe = subscribeRepository.findById(request.getSubscribeId())
                 .orElseThrow(() -> new RuntimeException("Subscritiption not founded"));
         Payment payment = paymentRepository.findById(id).orElseThrow(() -> new RuntimeException("Payment not founded"));
-        payment.setAmount(request.getAmount());
         payment.setPaymentDate(request.getPayment_date());
         payment.setSubscribe(subscribe);
         payment.setState(request.getState());
-        return payment;
+        return paymentRepository.save(payment);
     }
 
     @Transactional
