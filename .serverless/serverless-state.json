@@ -104,7 +104,7 @@
             "Properties": {
               "Code": {
                 "S3Bucket": "serverless-framework-deployments-eu-west-3-afc997d0-57db",
-                "S3Key": "serverless/subscriptions-api/dev/1743711966556-2025-04-03T20:26:06.556Z/app-0.0.1-SNAPSHOT.jar"
+                "S3Key": "serverless/subscriptions-api/dev/1743713113672-2025-04-03T20:45:13.672Z/app-0.0.1-SNAPSHOT.jar"
               },
               "Handler": "com.subscriptions.app.StreamLambdaHandler",
               "Runtime": "java17",
@@ -122,14 +122,14 @@
               "ApiLogGroup"
             ]
           },
-          "ApiLambdaVersionvLB0fZAGBzfj1VlQSAS52QzWM60IzyaZ9B3BxynFteI": {
+          "ApiLambdaVersion0SERCxXAmrrGvvevM2FmT3kVKyTlFe2SVeOF2kR0T30": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "ApiLambdaFunction"
               },
-              "CodeSha256": "bMZR7cZDvIlF8kCu2UyOzk3Omf4RW0iOrT/5EHwNQk4="
+              "CodeSha256": "Hkq0KBi0d9XPgEtg44QjjR0wF/7lcfIZxgwLj8EUv8M="
             }
           },
           "ApiGatewayRestApi": {
@@ -144,16 +144,28 @@
               "Policy": ""
             }
           },
-          "ApiGatewayMethodAny": {
+          "ApiGatewayResourceProxyVar": {
+            "Type": "AWS::ApiGateway::Resource",
+            "Properties": {
+              "ParentId": {
+                "Fn::GetAtt": [
+                  "ApiGatewayRestApi",
+                  "RootResourceId"
+                ]
+              },
+              "PathPart": "{proxy+}",
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              }
+            }
+          },
+          "ApiGatewayMethodProxyVarAny": {
             "Type": "AWS::ApiGateway::Method",
             "Properties": {
               "HttpMethod": "ANY",
               "RequestParameters": {},
               "ResourceId": {
-                "Fn::GetAtt": [
-                  "ApiGatewayRestApi",
-                  "RootResourceId"
-                ]
+                "Ref": "ApiGatewayResourceProxyVar"
               },
               "RestApiId": {
                 "Ref": "ApiGatewayRestApi"
@@ -193,7 +205,7 @@
               "ApiLambdaPermissionApiGateway"
             ]
           },
-          "ApiGatewayDeployment1743711963274": {
+          "ApiGatewayDeployment1743713109577": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -202,7 +214,7 @@
               "StageName": "dev"
             },
             "DependsOn": [
-              "ApiGatewayMethodAny"
+              "ApiGatewayMethodProxyVarAny"
             ]
           },
           "ApiLambdaPermissionApiGateway": {
@@ -253,7 +265,7 @@
           "ApiLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "ApiLambdaVersionvLB0fZAGBzfj1VlQSAS52QzWM60IzyaZ9B3BxynFteI"
+              "Ref": "ApiLambdaVersion0SERCxXAmrrGvvevM2FmT3kVKyTlFe2SVeOF2kR0T30"
             },
             "Export": {
               "Name": "sls-subscriptions-api-dev-ApiLambdaFunctionQualifiedArn"
@@ -296,7 +308,7 @@
         "events": [
           {
             "http": {
-              "path": "",
+              "path": "{proxy+}",
               "method": "any",
               "integration": "AWS_PROXY"
             }
@@ -308,7 +320,7 @@
         "timeout": 29,
         "runtime": "java17",
         "vpc": {},
-        "versionLogicalId": "ApiLambdaVersionvLB0fZAGBzfj1VlQSAS52QzWM60IzyaZ9B3BxynFteI"
+        "versionLogicalId": "ApiLambdaVersion0SERCxXAmrrGvvevM2FmT3kVKyTlFe2SVeOF2kR0T30"
       }
     },
     "configValidationMode": "warn",
@@ -322,7 +334,7 @@
         "artifact": "target/app-0.0.1-SNAPSHOT.jar",
         "artifactsS3KeyDirname": "serverless/subscriptions-api/dev/code-artifacts",
         "deploymentBucket": "serverless-framework-deployments-eu-west-3-afc997d0-57db",
-        "artifactDirectoryName": "serverless/subscriptions-api/dev/1743711966556-2025-04-03T20:26:06.556Z"
+        "artifactDirectoryName": "serverless/subscriptions-api/dev/1743713113672-2025-04-03T20:45:13.672Z"
       },
       "functions": {
         "$ref": "$[\"service\"][\"functions\"]"
@@ -333,7 +345,7 @@
     "layers": {}
   },
   "package": {
-    "artifactDirectoryName": "serverless/subscriptions-api/dev/1743711966556-2025-04-03T20:26:06.556Z",
+    "artifactDirectoryName": "serverless/subscriptions-api/dev/1743713113672-2025-04-03T20:45:13.672Z",
     "artifact": "target/app-0.0.1-SNAPSHOT.jar"
   }
 }

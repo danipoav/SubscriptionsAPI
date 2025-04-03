@@ -14,5 +14,5 @@ functions:
     handler: com.subscriptions.app.StreamLambdaHandler
     events:
       - http:
-          path: /
+          path: /{proxy+}
           method: any
