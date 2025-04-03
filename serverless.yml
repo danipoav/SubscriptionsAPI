@@ -1,0 +1,18 @@
+service: subscriptions-api
+
+provider:
+  name: aws
+  runtime: java17
+  region: eu-west-3
+  timeout: 29
+
+package:
+  artifact: target/app-0.0.1-SNAPSHOT.jar
+
+functions:
+  api:
+    handler: com.subscriptions.app.StreamLambdaHandler
+    events:
+      - http:
+          path: /
+          method: any
