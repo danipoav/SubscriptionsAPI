@@ -7,7 +7,7 @@ provider:
   timeout: 29
 
 package:
-  artifact: target/app-0.0.1-SNAPSHOT.jar
+  artifact: target/original-app-0.0.1-SNAPSHOT.jar
 
 functions:
   api:
